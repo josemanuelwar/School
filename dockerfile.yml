@@ -1,0 +1,19 @@
+services:
+  postgres:
+    image: postgres:13
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=my_store
+    ports:
+      - "5455:5432"
+    volumes:
+      - "/mnt/proyectos/Laravel/school/data:/var/lib/postgresql/data"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+     - PGADMIN_DEFAULT_EMAIL=christian@mail.com
+     - PGADMIN_DEFAULT_PASSWORD=password
+    ports:
+      - 5050:80
