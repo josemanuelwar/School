@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('grade_subject', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('grade_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('subject_id')->constrained()->cascadeOnDelete();
+            $table->unsignedTinyInteger('weekly_hours')->nullable();
+            $table->unique(['grade_id','subject_id']);
             $table->timestamps();
         });
     }
@@ -22,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('students');
+        Schema::dropIfExists('grade_subject');
     }
 };

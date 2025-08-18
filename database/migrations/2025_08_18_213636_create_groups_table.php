@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create("school_user", function (Blueprint $table) {
+        Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('school_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('grade_id')->constrained('grades')->cascadeOnDelete();
+            $table->string('name');
+            $table->unsignedBigInteger('capacity')->nullable();
+            $table->string('shift')->nullable();
             $table->timestamps();
-            $table->unique(['school_id', 'user_id']);
+             $table->unique(['grade_id','name']);
+            $table->index('grade_id');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('school_user');
+        Schema::dropIfExists('groups');
     }
 };

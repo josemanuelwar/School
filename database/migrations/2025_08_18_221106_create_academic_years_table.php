@@ -11,18 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('schools', function (Blueprint $table) {
+        Schema::create('academic_years', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('school_id')->constrained('schools')->cascadeOnDelete();
             $table->string('name');
-            $table->string('city');
-            $table->string('state');
-            $table->string('address');
-            $table->string('number_phone');
-            $table->string('number_movil');
-            $table->string('corperation_email');
-            $table->string('zip_code');
-            $table->string('web');
+            $table->date('starts_at')->nullable();
+            $table->date('ends_at')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
+            $table->unique(['school_id','name']);
+            $table->index(['school_id','active']);
         });
     }
 
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('schools');
+        Schema::dropIfExists('academic_years');
     }
 };
