@@ -28,7 +28,6 @@ return new class extends Migration
             $table->boolean('published')->default(false);
             $table->timestamps();
             $table->index(['school_id','grade_id','group_id','subject_id','period_id','type','published']);
-            $table->timestamps();
         });
     }
 

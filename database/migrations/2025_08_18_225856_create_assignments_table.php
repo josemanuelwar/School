@@ -17,7 +17,6 @@ return new class extends Migration {
             $table->boolean('allow_late')->default(false);
             $table->unsignedSmallInteger('late_penalty_percent')->nullable(); // si aplicas penalización
             $table->boolean('requires_attachment')->default(false);
-
             $table->timestamps();
         });
     }
